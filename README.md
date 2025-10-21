@@ -61,9 +61,6 @@ The project will follow the **Model-View-Controller** architectural pattern:
 | Concept | Planned Implementation |
 |---------|------------------------|
 | **Encapsulation** | Private fields with public getters/setters |
-| **Inheritance** | Base classes extended by specific entities |
-| **Polymorphism** | Method overriding and interface implementation |
-| **Abstraction** | Abstract classes and interfaces |
 | **Data Structures** | Custom Linked List with generic Node class |
 
 ## 📊 Planned Data Structure Implementation
@@ -115,7 +112,6 @@ Through this project, I aim to:
 - Database integration (MySQL/PostgreSQL)
 - Doubly Linked List implementation
 - Stack/Queue for order processing
-- File I/O for data persistence
 - Advanced search algorithms
 - Multi-user authentication
 - Print receipt functionality
