@@ -914,14 +914,20 @@ public class MainPanel extends javax.swing.JFrame {
         btnDashboard.setBackground(Color.decode("#DC0033"));
         btnDashboard.setFont(new Font("", Font.BOLD, 18));
         btnPlaceOrder.setBackground(Color.decode("#FF0033"));
-        btnPlaceOrder.setFont(new Font("", Font.BOLD, 18));
+        btnPlaceOrder.setFont(new Font("", Font.PLAIN, 18));
         btnUpdateOrder.setBackground(Color.decode("#FF0033"));
         btnUpdateOrder.setFont(new Font("", Font.PLAIN, 18));
 
         //Panel visibility
         dashboard.setVisible(true);
-        bestCustomerPanel.setVisible(false);
+        placeOrderPanel.setVisible(false);
         updateOrderPanel.setVisible(false);
+        
+        //Search Panel visibility
+        bestCustomerPanel.setVisible(false);
+        
+        //Update Panel Textfield visibility
+        updateTxtFieldPanel.setVisible(false);
     }//GEN-LAST:event_btnDashboardActionPerformed
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
@@ -987,8 +993,14 @@ public class MainPanel extends javax.swing.JFrame {
         
         //Panel visibility
         dashboard.setVisible(false);
-        bestCustomerPanel.setVisible(false);
+        placeOrderPanel.setVisible(false);
         updateOrderPanel.setVisible(true);
+        
+        //Search Panel visibility
+        bestCustomerPanel.setVisible(false);
+        
+        //Update Panel Textfield visibility
+        updateTxtFieldPanel.setVisible(false);
     }//GEN-LAST:event_btnUpdateOrderActionPerformed
 
     private void btnPlaceOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlaceOrderActionPerformed
@@ -1003,11 +1015,13 @@ public class MainPanel extends javax.swing.JFrame {
         //Panel visibility
         dashboard.setVisible(false);
         placeOrderPanel.setVisible(true);
-        bestCustomerPanel.setVisible(false);
         updateOrderPanel.setVisible(false);
         
         //Search Panel visibility
         bestCustomerPanel.setVisible(false);
+        
+        //Update Panel Textfield visibility
+        updateTxtFieldPanel.setVisible(false);
     }//GEN-LAST:event_btnPlaceOrderActionPerformed
 
     public static void main(String args[]) {
