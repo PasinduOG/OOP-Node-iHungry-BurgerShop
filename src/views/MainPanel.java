@@ -3,30 +3,78 @@ package views;
 import com.formdev.flatlaf.themes.FlatMacLightLaf;
 import java.awt.Color;
 import java.awt.Font;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 public class MainPanel extends javax.swing.JFrame {
 
     public MainPanel() {
         initComponents();
-
-        //Initial Button Selection Visibility
-        btnDashboard.setBackground(Color.decode("#DC0033"));
-        btnDashboard.setFont(new Font("", Font.BOLD, 18));
-
-        //Initial Panel visibility
-        dashboard.setVisible(true);
+        showActiveButton(btnDashboard);
+        showSidebar(sidePanel1);
+        showPanel(dashboard);
+    }
+    
+    private void resetButtons(){
+        //Sidebar 01 Buttons
+        btnDashboard.setBackground(Color.decode("#FF0033"));
+        btnDashboard.setFont(new Font("", Font.PLAIN, 18));
+        btnPlaceOrder.setBackground(Color.decode("#FF0033"));
+        btnPlaceOrder.setFont(new Font("", Font.PLAIN, 18));
+        btnUpdateOrder.setBackground(Color.decode("#FF0033"));
+        btnUpdateOrder.setFont(new Font("", Font.PLAIN, 18));
+        
+        //Sidebar 02 Buttons
+        btnBestCustomer.setBackground(Color.decode("#FF0033"));
+        btnBestCustomer.setFont(new Font("", Font.PLAIN, 18));
+        btnSearchOrder.setBackground(Color.decode("#FF0033"));
+        btnSearchOrder.setFont(new Font("", Font.PLAIN, 18));
+        btnSearchCustomer.setBackground(Color.decode("#FF0033"));
+        btnSearchCustomer.setFont(new Font("", Font.PLAIN, 18));
+        
+        //Sidebar 03 Buttons
+        btnProcessOrder.setBackground(Color.decode("#FF0033"));
+        btnProcessOrder.setFont(new Font("", Font.PLAIN, 18));
+        btnDeliverOrder.setBackground(Color.decode("#FF0033"));
+        btnDeliverOrder.setFont(new Font("", Font.PLAIN, 18));
+        btnCancelOrder.setBackground(Color.decode("#FF0033"));
+        btnCancelOrder.setFont(new Font("", Font.PLAIN, 18));
+    }
+    
+    private void showPanel(JPanel showPanel){
+        //Main menu panels
+        dashboard.setVisible(false);
         placeOrderPanel.setVisible(false);
         updateOrderPanel.setVisible(false);
         
-        //Initial Search Panel visibility
+        //Search menu panels
         bestCustomerPanel.setVisible(false);
         searchOrderPanel.setVisible(false);
+        searchCustomerPanel.setVisible(false);
         
-        //Initial Sidebar Visibility
-        sidePanel1.setVisible(true);
+        //View Order menu panels
+        processingOrderPanel.setVisible(false);
+        deliveredOrderPanel.setVisible(false);
+        cancelOrderPanel.setVisible(false);
+        
+        //Panel to show
+        showPanel.setVisible(true);
+    }
+    
+    private void showSidebar(JPanel showSidebar){
+        sidePanel1.setVisible(false);
         sidePanel2.setVisible(false);
         sidePanel3.setVisible(false);
+        
+        //Sidebar to show
+        showSidebar.setVisible(true);
+    }
+    
+    private void showActiveButton(JButton activeBtn){
+        resetButtons();
+        activeBtn.setBackground(Color.decode("#DC0033"));
+        activeBtn.setFont(new Font("", Font.BOLD, 18));
     }
 
     @SuppressWarnings("unchecked")
@@ -98,6 +146,30 @@ public class MainPanel extends javax.swing.JFrame {
         jLabel30 = new javax.swing.JLabel();
         jLabel31 = new javax.swing.JLabel();
         jLabel32 = new javax.swing.JLabel();
+        searchCustomerPanel = new javax.swing.JPanel();
+        lblHeader1 = new javax.swing.JLabel();
+        customerSearchPanel = new javax.swing.JPanel();
+        jLabel33 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jLabel34 = new javax.swing.JLabel();
+        jLabel35 = new javax.swing.JLabel();
+        orderTablePanel = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel36 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        processingOrderPanel = new javax.swing.JPanel();
+        lblHeader6 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
+        deliveredOrderPanel = new javax.swing.JPanel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTable3 = new javax.swing.JTable();
+        lblHeader7 = new javax.swing.JLabel();
+        cancelOrderPanel = new javax.swing.JPanel();
+        lblHeader8 = new javax.swing.JLabel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jTable4 = new javax.swing.JTable();
         updateOrderPanel = new javax.swing.JPanel();
         lblHeader5 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
@@ -120,6 +192,9 @@ public class MainPanel extends javax.swing.JFrame {
         setMaximumSize(new java.awt.Dimension(1000, 600));
         setMinimumSize(new java.awt.Dimension(1000, 600));
         setResizable(false);
+
+        mainSidePanel.setMaximumSize(new java.awt.Dimension(280, 600));
+        mainSidePanel.setMinimumSize(new java.awt.Dimension(280, 600));
 
         sidePanel1.setBackground(new java.awt.Color(255, 255, 255));
         sidePanel1.setForeground(new java.awt.Color(0, 0, 0));
@@ -420,8 +495,13 @@ public class MainPanel extends javax.swing.JFrame {
                 .addComponent(sidePanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        mainPanel.setMaximumSize(new java.awt.Dimension(720, 600));
+        mainPanel.setMinimumSize(new java.awt.Dimension(720, 600));
+
         dashboard.setBackground(new java.awt.Color(255, 255, 255));
         dashboard.setForeground(new java.awt.Color(0, 0, 0));
+        dashboard.setMaximumSize(new java.awt.Dimension(720, 600));
+        dashboard.setMinimumSize(new java.awt.Dimension(720, 600));
 
         lblHeader.setFont(new java.awt.Font("SansSerif", 1, 36)); // NOI18N
         lblHeader.setForeground(new java.awt.Color(0, 0, 0));
@@ -681,6 +761,8 @@ public class MainPanel extends javax.swing.JFrame {
 
         bestCustomerPanel.setBackground(new java.awt.Color(255, 255, 255));
         bestCustomerPanel.setForeground(new java.awt.Color(0, 0, 0));
+        bestCustomerPanel.setMaximumSize(new java.awt.Dimension(720, 600));
+        bestCustomerPanel.setMinimumSize(new java.awt.Dimension(720, 600));
 
         lblHeader2.setFont(new java.awt.Font("SansSerif", 1, 36)); // NOI18N
         lblHeader2.setForeground(new java.awt.Color(0, 0, 0));
@@ -863,8 +945,289 @@ public class MainPanel extends javax.swing.JFrame {
                 .addContainerGap(157, Short.MAX_VALUE))
         );
 
+        searchCustomerPanel.setBackground(new java.awt.Color(255, 255, 255));
+        searchCustomerPanel.setForeground(new java.awt.Color(0, 0, 0));
+        searchCustomerPanel.setMaximumSize(new java.awt.Dimension(720, 600));
+        searchCustomerPanel.setMinimumSize(new java.awt.Dimension(720, 600));
+
+        lblHeader1.setFont(new java.awt.Font("SansSerif", 1, 36)); // NOI18N
+        lblHeader1.setForeground(new java.awt.Color(0, 0, 0));
+        lblHeader1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblHeader1.setText("Search Customer");
+
+        customerSearchPanel.setBackground(new java.awt.Color(255, 255, 255));
+        customerSearchPanel.setForeground(new java.awt.Color(0, 0, 0));
+        customerSearchPanel.setMaximumSize(new java.awt.Dimension(720, 140));
+        customerSearchPanel.setMinimumSize(new java.awt.Dimension(720, 140));
+        customerSearchPanel.setPreferredSize(new java.awt.Dimension(720, 140));
+
+        jLabel33.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        jLabel33.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel33.setText("Enter Customer ID :");
+
+        jTextField1.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        jTextField1.setText("0702436642");
+
+        jLabel34.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        jLabel34.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel34.setText("Customer Name :");
+
+        jLabel35.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        jLabel35.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel35.setText("[Empty]");
+
+        javax.swing.GroupLayout customerSearchPanelLayout = new javax.swing.GroupLayout(customerSearchPanel);
+        customerSearchPanel.setLayout(customerSearchPanelLayout);
+        customerSearchPanelLayout.setHorizontalGroup(
+            customerSearchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(customerSearchPanelLayout.createSequentialGroup()
+                .addGap(67, 67, 67)
+                .addGroup(customerSearchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel33)
+                    .addComponent(jLabel34))
+                .addGap(18, 18, 18)
+                .addGroup(customerSearchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel35, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        customerSearchPanelLayout.setVerticalGroup(
+            customerSearchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(customerSearchPanelLayout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addGroup(customerSearchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel33)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(customerSearchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel34)
+                    .addComponent(jLabel35))
+                .addContainerGap(48, Short.MAX_VALUE))
+        );
+
+        orderTablePanel.setBackground(new java.awt.Color(255, 255, 255));
+        orderTablePanel.setForeground(new java.awt.Color(0, 0, 0));
+        orderTablePanel.setMaximumSize(new java.awt.Dimension(720, 362));
+        orderTablePanel.setMinimumSize(new java.awt.Dimension(720, 362));
+        orderTablePanel.setPreferredSize(new java.awt.Dimension(720, 362));
+
+        jPanel1.setBackground(new java.awt.Color(255, 51, 51));
+
+        jLabel36.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
+        jLabel36.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel36.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel36.setText("Orders List");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel36, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel36)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(jTable1);
+
+        javax.swing.GroupLayout orderTablePanelLayout = new javax.swing.GroupLayout(orderTablePanel);
+        orderTablePanel.setLayout(orderTablePanelLayout);
+        orderTablePanelLayout.setHorizontalGroup(
+            orderTablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, orderTablePanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2)
+                .addContainerGap())
+        );
+        orderTablePanelLayout.setVerticalGroup(
+            orderTablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(orderTablePanelLayout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 306, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout searchCustomerPanelLayout = new javax.swing.GroupLayout(searchCustomerPanel);
+        searchCustomerPanel.setLayout(searchCustomerPanelLayout);
+        searchCustomerPanelLayout.setHorizontalGroup(
+            searchCustomerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(searchCustomerPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblHeader1, javax.swing.GroupLayout.DEFAULT_SIZE, 708, Short.MAX_VALUE)
+                .addContainerGap())
+            .addComponent(customerSearchPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(orderTablePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        searchCustomerPanelLayout.setVerticalGroup(
+            searchCustomerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(searchCustomerPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblHeader1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(customerSearchPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(orderTablePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        processingOrderPanel.setBackground(new java.awt.Color(255, 255, 255));
+        processingOrderPanel.setForeground(new java.awt.Color(0, 0, 0));
+        processingOrderPanel.setMaximumSize(new java.awt.Dimension(720, 600));
+        processingOrderPanel.setMinimumSize(new java.awt.Dimension(720, 600));
+        processingOrderPanel.setPreferredSize(new java.awt.Dimension(720, 600));
+
+        lblHeader6.setFont(new java.awt.Font("SansSerif", 1, 36)); // NOI18N
+        lblHeader6.setForeground(new java.awt.Color(0, 0, 0));
+        lblHeader6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblHeader6.setText("Preparing Orders");
+
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane3.setViewportView(jTable2);
+
+        javax.swing.GroupLayout processingOrderPanelLayout = new javax.swing.GroupLayout(processingOrderPanel);
+        processingOrderPanel.setLayout(processingOrderPanelLayout);
+        processingOrderPanelLayout.setHorizontalGroup(
+            processingOrderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(processingOrderPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblHeader6, javax.swing.GroupLayout.DEFAULT_SIZE, 708, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(processingOrderPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 620, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        processingOrderPanelLayout.setVerticalGroup(
+            processingOrderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(processingOrderPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblHeader6, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(65, Short.MAX_VALUE))
+        );
+
+        deliveredOrderPanel.setBackground(new java.awt.Color(255, 255, 255));
+        deliveredOrderPanel.setForeground(new java.awt.Color(0, 0, 0));
+
+        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane4.setViewportView(jTable3);
+
+        lblHeader7.setFont(new java.awt.Font("SansSerif", 1, 36)); // NOI18N
+        lblHeader7.setForeground(new java.awt.Color(0, 0, 0));
+        lblHeader7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblHeader7.setText("Delivered Orders");
+
+        javax.swing.GroupLayout deliveredOrderPanelLayout = new javax.swing.GroupLayout(deliveredOrderPanel);
+        deliveredOrderPanel.setLayout(deliveredOrderPanelLayout);
+        deliveredOrderPanelLayout.setHorizontalGroup(
+            deliveredOrderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(deliveredOrderPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblHeader7, javax.swing.GroupLayout.DEFAULT_SIZE, 708, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(deliveredOrderPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 620, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        deliveredOrderPanelLayout.setVerticalGroup(
+            deliveredOrderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(deliveredOrderPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblHeader7, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(65, Short.MAX_VALUE))
+        );
+
+        cancelOrderPanel.setBackground(new java.awt.Color(255, 255, 255));
+        cancelOrderPanel.setForeground(new java.awt.Color(0, 0, 0));
+
+        lblHeader8.setFont(new java.awt.Font("SansSerif", 1, 36)); // NOI18N
+        lblHeader8.setForeground(new java.awt.Color(0, 0, 0));
+        lblHeader8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblHeader8.setText("Cancelled Orders");
+
+        jTable4.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane5.setViewportView(jTable4);
+
+        javax.swing.GroupLayout cancelOrderPanelLayout = new javax.swing.GroupLayout(cancelOrderPanel);
+        cancelOrderPanel.setLayout(cancelOrderPanelLayout);
+        cancelOrderPanelLayout.setHorizontalGroup(
+            cancelOrderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(cancelOrderPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblHeader8, javax.swing.GroupLayout.DEFAULT_SIZE, 708, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(cancelOrderPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 620, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        cancelOrderPanelLayout.setVerticalGroup(
+            cancelOrderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(cancelOrderPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblHeader8, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(65, Short.MAX_VALUE))
+        );
+
         updateOrderPanel.setBackground(new java.awt.Color(255, 255, 255));
         updateOrderPanel.setForeground(new java.awt.Color(0, 0, 0));
+        updateOrderPanel.setMaximumSize(new java.awt.Dimension(720, 600));
+        updateOrderPanel.setMinimumSize(new java.awt.Dimension(720, 600));
 
         lblHeader5.setFont(new java.awt.Font("SansSerif", 1, 36)); // NOI18N
         lblHeader5.setForeground(new java.awt.Color(0, 0, 0));
@@ -1022,6 +1385,14 @@ public class MainPanel extends javax.swing.JFrame {
                 .addComponent(updateOrderPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(searchOrderPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(searchCustomerPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(processingOrderPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(deliveredOrderPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(cancelOrderPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1034,6 +1405,14 @@ public class MainPanel extends javax.swing.JFrame {
                 .addComponent(updateOrderPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(searchOrderPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(searchCustomerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(processingOrderPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(deliveredOrderPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(cancelOrderPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -1059,39 +1438,6 @@ public class MainPanel extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnDashboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDashboardActionPerformed
-        //Sidebar 01 Button Selection Visibility
-        btnDashboard.setBackground(Color.decode("#DC0033"));
-        btnDashboard.setFont(new Font("", Font.BOLD, 18));
-        btnPlaceOrder.setBackground(Color.decode("#FF0033"));
-        btnPlaceOrder.setFont(new Font("", Font.PLAIN, 18));
-        btnUpdateOrder.setBackground(Color.decode("#FF0033"));
-        btnUpdateOrder.setFont(new Font("", Font.PLAIN, 18));
-        
-        //Sidebar 02 Button Selection Visibility
-        btnBestCustomer.setBackground(Color.decode("#FF0033"));
-        btnBestCustomer.setFont(new Font("", Font.PLAIN, 18));
-        btnSearchOrder.setBackground(Color.decode("#FF0033"));
-        btnSearchOrder.setFont(new Font("", Font.PLAIN, 18));
-        
-        //Sidebar 03 Button Selection Visibility
-        btnProcessOrder.setBackground(Color.decode("#FF0033"));
-        btnProcessOrder.setFont(new Font("", Font.PLAIN, 18));
-        btnDeliverOrder.setBackground(Color.decode("#FF0033"));
-        btnDeliverOrder.setFont(new Font("", Font.PLAIN, 18));
-        btnCancelOrder.setBackground(Color.decode("#FF0033"));
-        btnCancelOrder.setFont(new Font("", Font.PLAIN, 18));
-
-        //Panel visibility
-        dashboard.setVisible(true);
-        placeOrderPanel.setVisible(false);
-        updateOrderPanel.setVisible(false);
-        
-        //Search Panel visibility
-        bestCustomerPanel.setVisible(false);
-        searchOrderPanel.setVisible(false);
-    }//GEN-LAST:event_btnDashboardActionPerformed
-
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
         int option = JOptionPane.showConfirmDialog(this, "Do you want to exit?", "Confirmation", JOptionPane.YES_NO_OPTION);
         if (option == JOptionPane.YES_OPTION) {
@@ -1100,177 +1446,79 @@ public class MainPanel extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnExitActionPerformed
 
-    private void btnSearchOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchOrderActionPerformed
-        //Sidebar 01 Button Selection Visibility
-        btnDashboard.setBackground(Color.decode("#FF0033"));
-        btnDashboard.setFont(new Font("", Font.PLAIN, 18));
-        btnPlaceOrder.setBackground(Color.decode("#FF0033"));
-        btnPlaceOrder.setFont(new Font("", Font.PLAIN, 18));
-        btnUpdateOrder.setBackground(Color.decode("#FF0033"));
-        btnUpdateOrder.setFont(new Font("", Font.PLAIN, 18));
-        
-        //Sidebar 02 Button Selection Visibility
-        btnBestCustomer.setBackground(Color.decode("#FF0033"));
-        btnBestCustomer.setFont(new Font("", Font.PLAIN, 18));
-        btnSearchOrder.setBackground(Color.decode("#DC0033"));
-        btnSearchOrder.setFont(new Font("", Font.BOLD, 18));
-        
-        //Sidebar 03 Button Selection Visibility
-        btnProcessOrder.setBackground(Color.decode("#FF0033"));
-        btnProcessOrder.setFont(new Font("", Font.PLAIN, 18));
-        btnDeliverOrder.setBackground(Color.decode("#FF0033"));
-        btnDeliverOrder.setFont(new Font("", Font.PLAIN, 18));
-        btnCancelOrder.setBackground(Color.decode("#FF0033"));
-        btnCancelOrder.setFont(new Font("", Font.PLAIN, 18));
+    private void btnDashboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDashboardActionPerformed
+        showActiveButton(btnDashboard);
+        showSidebar(sidePanel1);
+        showPanel(dashboard);
+    }//GEN-LAST:event_btnDashboardActionPerformed
 
-        //Panel visibility
-        dashboard.setVisible(false);
-        placeOrderPanel.setVisible(false);
-        updateOrderPanel.setVisible(false);
-        
-        //Search Panel visibility
-        bestCustomerPanel.setVisible(false);
-        searchOrderPanel.setVisible(true);
-    }//GEN-LAST:event_btnSearchOrderActionPerformed
-
-    private void btnBestCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBestCustomerActionPerformed
-        //Sidebar 01 Button Selection Visibility
-        btnDashboard.setBackground(Color.decode("#DC0033"));
-        btnDashboard.setFont(new Font("", Font.PLAIN, 18));
-        btnPlaceOrder.setBackground(Color.decode("#FF0033"));
-        btnPlaceOrder.setFont(new Font("", Font.PLAIN, 18));
-        btnUpdateOrder.setBackground(Color.decode("#FF0033"));
-        btnUpdateOrder.setFont(new Font("", Font.PLAIN, 18));
-        
-        //Sidebar 02 Button Selection Visibility
-        btnBestCustomer.setBackground(Color.decode("#DC0033"));
-        btnBestCustomer.setFont(new Font("", Font.BOLD, 18));
-        btnSearchOrder.setBackground(Color.decode("#FF0033"));
-        btnSearchOrder.setFont(new Font("", Font.PLAIN, 18));
-        
-        //Sidebar 03 Button Selection Visibility
-        btnProcessOrder.setBackground(Color.decode("#FF0033"));
-        btnProcessOrder.setFont(new Font("", Font.PLAIN, 18));
-        btnDeliverOrder.setBackground(Color.decode("#FF0033"));
-        btnDeliverOrder.setFont(new Font("", Font.PLAIN, 18));
-        btnCancelOrder.setBackground(Color.decode("#FF0033"));
-        btnCancelOrder.setFont(new Font("", Font.PLAIN, 18));
-
-        //Panel visibility
-        dashboard.setVisible(false);
-        placeOrderPanel.setVisible(false);
-        updateOrderPanel.setVisible(false);
-        
-        //Search Panel visibility
-        bestCustomerPanel.setVisible(true);
-        searchOrderPanel.setVisible(false);
-    }//GEN-LAST:event_btnBestCustomerActionPerformed
-
-    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        sidePanel1.setVisible(true);
-        sidePanel2.setVisible(false);
-        sidePanel3.setVisible(false);
-    }//GEN-LAST:event_btnBackActionPerformed
+    private void btnPlaceOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlaceOrderActionPerformed
+        showActiveButton(btnPlaceOrder);
+        showSidebar(sidePanel1);
+        showPanel(placeOrderPanel);
+    }//GEN-LAST:event_btnPlaceOrderActionPerformed
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
-        sidePanel1.setVisible(false);
-        sidePanel2.setVisible(true);
-        sidePanel3.setVisible(false);
+        showSidebar(sidePanel2);
     }//GEN-LAST:event_btnSearchActionPerformed
 
     private void btnViewOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewOrderActionPerformed
-        sidePanel1.setVisible(false);
-        sidePanel2.setVisible(false);
-        sidePanel3.setVisible(true);
+        showSidebar(sidePanel3);
     }//GEN-LAST:event_btnViewOrderActionPerformed
 
+    private void btnUpdateOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateOrderActionPerformed
+        showActiveButton(btnUpdateOrder);
+        showSidebar(sidePanel1);
+        showPanel(updateOrderPanel);
+    }//GEN-LAST:event_btnUpdateOrderActionPerformed
+
+    private void btnBestCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBestCustomerActionPerformed
+        showActiveButton(btnBestCustomer);
+        showSidebar(sidePanel2);
+        showPanel(bestCustomerPanel);
+    }//GEN-LAST:event_btnBestCustomerActionPerformed
+
+    private void btnSearchOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchOrderActionPerformed
+        showActiveButton(btnSearchOrder);
+        showSidebar(sidePanel2);
+        showPanel(searchOrderPanel);
+    }//GEN-LAST:event_btnSearchOrderActionPerformed
+
+    private void btnSearchCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchCustomerActionPerformed
+        showActiveButton(btnSearchCustomer);
+        showSidebar(sidePanel2);
+        showPanel(searchCustomerPanel);
+    }//GEN-LAST:event_btnSearchCustomerActionPerformed
+
     private void btnProcessOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcessOrderActionPerformed
-        // TODO add your handling code here:
+        showActiveButton(btnProcessOrder);
+        showSidebar(sidePanel3);
+        showPanel(processingOrderPanel);
     }//GEN-LAST:event_btnProcessOrderActionPerformed
 
     private void btnDeliverOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeliverOrderActionPerformed
-        // TODO add your handling code here:
+        showActiveButton(btnDeliverOrder);
+        showSidebar(sidePanel3);
+        showPanel(deliveredOrderPanel);
     }//GEN-LAST:event_btnDeliverOrderActionPerformed
 
-    private void btnBack2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBack2ActionPerformed
-        sidePanel1.setVisible(true);
-        sidePanel2.setVisible(false);
-        sidePanel3.setVisible(false);
-    }//GEN-LAST:event_btnBack2ActionPerformed
-
     private void btnCancelOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelOrderActionPerformed
-        // TODO add your handling code here:
+        showActiveButton(btnCancelOrder);
+        showSidebar(sidePanel3);
+        showPanel(cancelOrderPanel);
     }//GEN-LAST:event_btnCancelOrderActionPerformed
 
-    private void btnUpdateOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateOrderActionPerformed
-        //Button Selection Visibility
-        btnDashboard.setBackground(Color.decode("#FF0033"));
-        btnDashboard.setFont(new Font("", Font.PLAIN, 18));
-        btnPlaceOrder.setBackground(Color.decode("#FF0033"));
-        btnPlaceOrder.setFont(new Font("", Font.PLAIN, 18));
-        btnUpdateOrder.setBackground(Color.decode("#DC0033"));
-        btnUpdateOrder.setFont(new Font("", Font.BOLD, 18));
-        
-        //Sidebar 02 Button Selection Visibility
-        btnBestCustomer.setBackground(Color.decode("#FF0033"));
-        btnBestCustomer.setFont(new Font("", Font.PLAIN, 18));
-        btnSearchOrder.setBackground(Color.decode("#FF0033"));
-        btnSearchOrder.setFont(new Font("", Font.PLAIN, 18));
-        
-        //Sidebar 03 Button Selection Visibility
-        btnProcessOrder.setBackground(Color.decode("#FF0033"));
-        btnProcessOrder.setFont(new Font("", Font.PLAIN, 18));
-        btnDeliverOrder.setBackground(Color.decode("#FF0033"));
-        btnDeliverOrder.setFont(new Font("", Font.PLAIN, 18));
-        btnCancelOrder.setBackground(Color.decode("#FF0033"));
-        btnCancelOrder.setFont(new Font("", Font.PLAIN, 18));
-        
-        //Panel visibility
-        dashboard.setVisible(false);
-        placeOrderPanel.setVisible(false);
-        updateOrderPanel.setVisible(true);
-        
-        //Search Panel visibility
-        bestCustomerPanel.setVisible(false);
-        searchOrderPanel.setVisible(false);
-    }//GEN-LAST:event_btnUpdateOrderActionPerformed
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        showActiveButton(btnDashboard);
+        showSidebar(sidePanel1);
+        showPanel(dashboard);
+    }//GEN-LAST:event_btnBackActionPerformed
 
-    private void btnPlaceOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlaceOrderActionPerformed
-        //Button Selection Visibility
-        btnDashboard.setBackground(Color.decode("#FF0033"));
-        btnDashboard.setFont(new Font("", Font.PLAIN, 18));
-        btnPlaceOrder.setBackground(Color.decode("#DC0033"));
-        btnPlaceOrder.setFont(new Font("", Font.BOLD, 18));
-        btnUpdateOrder.setBackground(Color.decode("#FF0033"));
-        btnUpdateOrder.setFont(new Font("", Font.PLAIN, 18));
-        
-        //Sidebar 02 Button Selection Visibility
-        btnBestCustomer.setBackground(Color.decode("#FF0033"));
-        btnBestCustomer.setFont(new Font("", Font.PLAIN, 18));
-        btnSearchOrder.setBackground(Color.decode("#FF0033"));
-        btnSearchOrder.setFont(new Font("", Font.PLAIN, 18));
-        
-        //Sidebar 03 Button Selection Visibility
-        btnProcessOrder.setBackground(Color.decode("#FF0033"));
-        btnProcessOrder.setFont(new Font("", Font.PLAIN, 18));
-        btnDeliverOrder.setBackground(Color.decode("#FF0033"));
-        btnDeliverOrder.setFont(new Font("", Font.PLAIN, 18));
-        btnCancelOrder.setBackground(Color.decode("#FF0033"));
-        btnCancelOrder.setFont(new Font("", Font.PLAIN, 18));
-        
-        //Panel visibility
-        dashboard.setVisible(false);
-        placeOrderPanel.setVisible(true);
-        updateOrderPanel.setVisible(false);
-        
-        //Search Panel visibility
-        bestCustomerPanel.setVisible(false);
-        searchOrderPanel.setVisible(false);
-    }//GEN-LAST:event_btnPlaceOrderActionPerformed
-
-    private void btnSearchCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchCustomerActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnSearchCustomerActionPerformed
+    private void btnBack2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBack2ActionPerformed
+        showActiveButton(btnDashboard);
+        showSidebar(sidePanel1);
+        showPanel(dashboard);
+    }//GEN-LAST:event_btnBack2ActionPerformed
 
     public static void main(String args[]) {
         FlatMacLightLaf.setup();
@@ -1296,9 +1544,12 @@ public class MainPanel extends javax.swing.JFrame {
     private javax.swing.JButton btnViewOrder;
     private javax.swing.JButton cancelBtn;
     private javax.swing.JButton cancelBtn2;
+    private javax.swing.JPanel cancelOrderPanel;
     private javax.swing.JPanel customerCountPanel;
+    private javax.swing.JPanel customerSearchPanel;
     private javax.swing.JPanel dashboard;
     private javax.swing.JPanel deliverCountPanel;
+    private javax.swing.JPanel deliveredOrderPanel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1325,26 +1576,47 @@ public class MainPanel extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
+    private javax.swing.JLabel jLabel33;
+    private javax.swing.JLabel jLabel34;
+    private javax.swing.JLabel jLabel35;
+    private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable2;
+    private javax.swing.JTable jTable3;
+    private javax.swing.JTable jTable4;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lblHeader;
+    private javax.swing.JLabel lblHeader1;
     private javax.swing.JLabel lblHeader2;
     private javax.swing.JLabel lblHeader3;
     private javax.swing.JLabel lblHeader4;
     private javax.swing.JLabel lblHeader5;
+    private javax.swing.JLabel lblHeader6;
+    private javax.swing.JLabel lblHeader7;
+    private javax.swing.JLabel lblHeader8;
     private javax.swing.JLabel lblImage1;
     private javax.swing.JLabel lblImage2;
     private javax.swing.JLabel lblImage3;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JPanel mainSidePanel;
     private javax.swing.JPanel orderCountPanel;
+    private javax.swing.JPanel orderTablePanel;
     private javax.swing.JButton placeOrderBtn;
     private javax.swing.JPanel placeOrderPanel;
+    private javax.swing.JPanel processingOrderPanel;
+    private javax.swing.JPanel searchCustomerPanel;
     private javax.swing.JPanel searchOrderPanel;
     private javax.swing.JPanel sidePanel1;
     private javax.swing.JPanel sidePanel2;
