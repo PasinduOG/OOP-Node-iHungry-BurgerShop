@@ -1,4 +1,4 @@
-package controllers;
+package burgerShop.controller;
 
 public class BurgerOrderController {
     

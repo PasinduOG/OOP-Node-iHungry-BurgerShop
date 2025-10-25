@@ -1,4 +1,4 @@
-package models;
+package burgerShop.model;
 
 public class BurgerOrder {
     
