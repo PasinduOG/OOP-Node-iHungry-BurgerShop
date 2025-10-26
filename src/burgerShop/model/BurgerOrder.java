@@ -2,6 +2,11 @@ package burgerShop.model;
 
 public class BurgerOrder {
     
+    public static final int BURGER_PRICE=500;
+    public static final int CANCEL=0;
+    public static final int PREPARING=1;
+    public static final int DELIVERED=2;
+    
     private String orderId;
     private String customerId;
     private String customerName;
@@ -56,6 +61,11 @@ public class BurgerOrder {
 
     public void setOrderStatus(int orderStatus) {
         this.orderStatus = orderStatus;
+    }
+
+    @Override
+    public String toString() {
+        return orderId+","+customerId+","+customerName+","+orderQty+","+orderStatus;
     }
     
 }
