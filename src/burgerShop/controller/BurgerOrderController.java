@@ -109,4 +109,8 @@ public class BurgerOrderController {
         }
         return false;
     }
+    
+    public static void updateOrder(BurgerOrder burgerOrder){
+        
+    }
 }

@@ -5,8 +5,6 @@ import burgerShop.model.BurgerOrder;
 import com.formdev.flatlaf.themes.FlatMacLightLaf;
 import java.awt.Color;
 import java.awt.Font;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -19,6 +17,7 @@ public class MainPanel extends javax.swing.JFrame {
         showSidebar(sidePanel1);
         showPanel(dashboard);
         orderIdLabel.setText(BurgerOrderController.generateOrderId());
+        alertPanel.setVisible(false);
     }
 
     private void resetButtons() {
@@ -191,6 +190,9 @@ public class MainPanel extends javax.swing.JFrame {
         lblCustomerName1 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         statusComboBox = new javax.swing.JComboBox<>();
+        alertPanel = new javax.swing.JPanel();
+        lblAlert1 = new javax.swing.JLabel();
+        lblAlert2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("iHungry BurgerShop");
@@ -749,7 +751,9 @@ public class MainPanel extends javax.swing.JFrame {
         placeOrderPanelLayout.setVerticalGroup(
             placeOrderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, placeOrderPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(lblHeader4, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 106, Short.MAX_VALUE)
                 .addGroup(placeOrderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(placeOrderPanelLayout.createSequentialGroup()
                         .addComponent(placeOrderBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -757,8 +761,6 @@ public class MainPanel extends javax.swing.JFrame {
                         .addComponent(cancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(273, 273, 273))
                     .addGroup(placeOrderPanelLayout.createSequentialGroup()
-                        .addComponent(lblHeader4, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(101, 101, 101)
                         .addGroup(placeOrderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblOrderId)
                             .addComponent(orderIdLabel))
@@ -1308,6 +1310,11 @@ public class MainPanel extends javax.swing.JFrame {
         cancelBtn2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         cancelBtn2.setForeground(new java.awt.Color(255, 255, 255));
         cancelBtn2.setText("Cancel");
+        cancelBtn2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelBtn2ActionPerformed(evt);
+            }
+        });
 
         lblCustomerId1.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         lblCustomerId1.setForeground(new java.awt.Color(204, 204, 204));
@@ -1325,60 +1332,96 @@ public class MainPanel extends javax.swing.JFrame {
         statusComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cancelled", "Preparing", "Delivered" }));
         statusComboBox.setEnabled(false);
 
+        alertPanel.setBackground(new java.awt.Color(255, 255, 255));
+        alertPanel.setForeground(new java.awt.Color(0, 0, 0));
+
+        lblAlert1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblAlert1.setForeground(new java.awt.Color(255, 51, 51));
+        lblAlert1.setText("You cannot update this order");
+
+        lblAlert2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblAlert2.setForeground(new java.awt.Color(255, 51, 51));
+        lblAlert2.setText("This order is already delivered");
+
+        javax.swing.GroupLayout alertPanelLayout = new javax.swing.GroupLayout(alertPanel);
+        alertPanel.setLayout(alertPanelLayout);
+        alertPanelLayout.setHorizontalGroup(
+            alertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(alertPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(alertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblAlert1)
+                    .addComponent(lblAlert2))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        alertPanelLayout.setVerticalGroup(
+            alertPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(alertPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblAlert1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblAlert2)
+                .addContainerGap(7, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout updateOrderPanelLayout = new javax.swing.GroupLayout(updateOrderPanel);
         updateOrderPanel.setLayout(updateOrderPanelLayout);
         updateOrderPanelLayout.setHorizontalGroup(
             updateOrderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(updateOrderPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblHeader5, javax.swing.GroupLayout.DEFAULT_SIZE, 708, Short.MAX_VALUE)
+                .addComponent(lblHeader5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(updateOrderPanelLayout.createSequentialGroup()
-                .addGap(58, 58, 58)
+                .addGap(62, 62, 62)
                 .addGroup(updateOrderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(updateOrderPanelLayout.createSequentialGroup()
                         .addGroup(updateOrderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel21)
-                            .addComponent(jLabel22)
-                            .addComponent(jLabel9))
-                        .addGap(104, 104, 104)
-                        .addGroup(updateOrderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(lblShowPrice1)
-                            .addComponent(txtQty1)
-                            .addComponent(statusComboBox, 0, 160, Short.MAX_VALUE)))
-                    .addGroup(updateOrderPanelLayout.createSequentialGroup()
-                        .addGroup(updateOrderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel17)
                             .addComponent(jLabel18)
+                            .addComponent(jLabel17)
                             .addComponent(jLabel20))
-                        .addGap(36, 36, 36)
+                        .addGap(19, 19, 19)
                         .addGroup(updateOrderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(updateOrderPanelLayout.createSequentialGroup()
                                 .addGroup(updateOrderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblCustomerId1)
                                     .addComponent(lblCustomerName1))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE))
                             .addGroup(updateOrderPanelLayout.createSequentialGroup()
                                 .addComponent(txtOrderId)
-                                .addGap(93, 93, 93)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGroup(updateOrderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(updateOrderBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(cancelBtn2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(24, 24, 24))))
+                        .addGap(24, 24, 24))
+                    .addGroup(updateOrderPanelLayout.createSequentialGroup()
+                        .addGroup(updateOrderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel22)
+                            .addComponent(jLabel9)
+                            .addComponent(jLabel21))
+                        .addGap(87, 87, 87)
+                        .addGroup(updateOrderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(updateOrderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(lblShowPrice1)
+                                .addComponent(txtQty1)
+                                .addComponent(statusComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(alertPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         updateOrderPanelLayout.setVerticalGroup(
             updateOrderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, updateOrderPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblHeader5, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 109, Short.MAX_VALUE)
-                .addGroup(updateOrderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(updateOrderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(updateOrderPanelLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 135, Short.MAX_VALUE)
                         .addComponent(updateOrderBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cancelBtn2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(273, 273, 273))
                     .addGroup(updateOrderPanelLayout.createSequentialGroup()
+                        .addGap(86, 86, 86)
                         .addGroup(updateOrderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtOrderId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel17))
@@ -1402,7 +1445,9 @@ public class MainPanel extends javax.swing.JFrame {
                         .addGroup(updateOrderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel9)
                             .addComponent(statusComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(141, 141, 141))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(alertPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
@@ -1494,11 +1539,15 @@ public class MainPanel extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPlaceOrderActionPerformed
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+        showActiveButton(btnBestCustomer);
         showSidebar(sidePanel2);
+        showPanel(bestCustomerPanel);
     }//GEN-LAST:event_btnSearchActionPerformed
 
     private void btnViewOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewOrderActionPerformed
+        showActiveButton(btnProcessOrder);
         showSidebar(sidePanel3);
+        showPanel(processingOrderPanel);
     }//GEN-LAST:event_btnViewOrderActionPerformed
 
     private void btnUpdateOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateOrderActionPerformed
@@ -1600,16 +1649,13 @@ public class MainPanel extends javax.swing.JFrame {
 
     private void updateOrderBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateOrderBtnActionPerformed
         String orderId = txtOrderId.getText();
+        String customerId = lblCustomerId1.getText();
+        String customerName = lblCustomerName1.getText();
+        String qty = txtQty1.getText();
+        int status = statusComboBox.getSelectedIndex();
 
-        BurgerOrder burgerOrder = BurgerOrderController.searchBurgerOrder(orderId);
-//        String qty = txtQty2.getText();
-//        int status = statusComboBox.getSelectedIndex();
-//
-//        if (qty.isEmpty() || Integer.parseInt(qty) < 1) {
-//            JOptionPane.showMessageDialog(this, "Please enter at least one quantity");
-//            return;
-//        }
-
+        BurgerOrder burgerOrder = new BurgerOrder(orderId, customerId, customerName, Integer.parseInt(qty), status);
+        BurgerOrderController.updateOrder(burgerOrder);
     }//GEN-LAST:event_updateOrderBtnActionPerformed
 
     private void txtCustomerIdKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCustomerIdKeyReleased
@@ -1632,14 +1678,31 @@ public class MainPanel extends javax.swing.JFrame {
 
     private void txtOrderIdKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtOrderIdKeyReleased
         String orderId = txtOrderId.getText();
-        
+
         BurgerOrder burgerOrder = BurgerOrderController.searchBurgerOrder(orderId);
 
-        if (orderId.isEmpty() || burgerOrder==null) {
+        if (orderId.isEmpty() || burgerOrder == null) {
+            alertPanel.setVisible(false);
             clear();
         }
 
         if (burgerOrder != null) {
+            switch (burgerOrder.getOrderStatus()) {
+                case BurgerOrder.PREPARING:
+                    alertPanel.setVisible(false);
+                    txtQty1.setEnabled(true);
+                    statusComboBox.setEnabled(true);
+                    break;
+                case BurgerOrder.DELIVERED:
+                    alertPanel.setVisible(true);
+                    lblAlert2.setText("This order is already delivered");
+                    break;
+                case BurgerOrder.CANCEL:
+                    alertPanel.setVisible(true);
+                    lblAlert2.setText("This order is already Cancelled");
+                    break;
+            }
+
             lblCustomerId1.setText(burgerOrder.getCustomerId());
             lblCustomerId1.setForeground(Color.decode("#000000"));
 
@@ -1647,15 +1710,18 @@ public class MainPanel extends javax.swing.JFrame {
             lblCustomerName1.setForeground(Color.decode("#000000"));
 
             txtQty1.setText(String.valueOf(burgerOrder.getOrderQty()));
-            txtQty1.setEnabled(true);
 
-            lblShowPrice1.setText("LKR "+(double)(burgerOrder.getOrderQty()*BurgerOrder.BURGER_PRICE));
+            lblShowPrice1.setText("LKR " + (double) (burgerOrder.getOrderQty() * BurgerOrder.BURGER_PRICE));
             lblShowPrice1.setForeground(Color.decode("#000000"));
 
             statusComboBox.setSelectedIndex(burgerOrder.getOrderStatus());
-            statusComboBox.setEnabled(true);
         }
     }//GEN-LAST:event_txtOrderIdKeyReleased
+
+    private void cancelBtn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtn2ActionPerformed
+        txtOrderId.setText("");
+        clear();
+    }//GEN-LAST:event_cancelBtn2ActionPerformed
 
     public static void main(String args[]) {
         FlatMacLightLaf.setup();
@@ -1664,6 +1730,7 @@ public class MainPanel extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel alertPanel;
     private javax.swing.JPanel bestCustomerPanel;
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnBack2;
@@ -1725,6 +1792,8 @@ public class MainPanel extends javax.swing.JFrame {
     private javax.swing.JTable jTable3;
     private javax.swing.JTable jTable4;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel lblAlert1;
+    private javax.swing.JLabel lblAlert2;
     private javax.swing.JLabel lblCustomerId;
     private javax.swing.JLabel lblCustomerId1;
     private javax.swing.JLabel lblCustomerName;
