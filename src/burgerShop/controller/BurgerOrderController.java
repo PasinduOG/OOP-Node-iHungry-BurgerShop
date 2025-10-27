@@ -2,11 +2,18 @@ package burgerShop.controller;
 
 import burgerShop.model.BurgerOrder;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Scanner;
 
 public class BurgerOrderController {
+    
+    public static final int BURGER_PRICE=500;
+    public static final int CANCEL=0;
+    public static final int PREPARING=1;
+    public static final int DELIVERED=2;
 
     public static String generateOrderId() {
         try {
@@ -27,9 +34,9 @@ public class BurgerOrderController {
     }
 
     public static String getStatusNameById(int statusId) {
-        return statusId == BurgerOrder.CANCEL ? "Cancelled"
-                : statusId == BurgerOrder.PREPARING ? "Processing"
-                        : statusId == BurgerOrder.DELIVERED ? "Delivered" : null;
+        return statusId == CANCEL ? "Cancelled"
+                : statusId == PREPARING ? "Processing"
+                        : statusId == DELIVERED ? "Delivered" : null;
 
     }
 
@@ -109,8 +116,12 @@ public class BurgerOrderController {
         }
         return false;
     }
-    
-    public static void updateOrder(BurgerOrder burgerOrder){
-        
+
+    public static boolean updateOrder(BurgerOrder burgerOrder) {
+        try {
+            Scanner scanner = new Scanner(new File("BurgerOrders.txt"));
+        } catch (IOException e) {
+        }
+        return false;
     }
 }

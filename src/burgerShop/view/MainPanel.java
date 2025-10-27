@@ -1386,14 +1386,14 @@ public class MainPanel extends javax.swing.JFrame {
                                 .addGroup(updateOrderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblCustomerId1)
                                     .addComponent(lblCustomerName1))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 197, Short.MAX_VALUE)
+                                .addGroup(updateOrderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(updateOrderBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cancelBtn2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(24, 24, 24))
                             .addGroup(updateOrderPanelLayout.createSequentialGroup()
-                                .addComponent(txtOrderId)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGroup(updateOrderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(updateOrderBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cancelBtn2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(24, 24, 24))
+                                .addComponent(txtOrderId, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(updateOrderPanelLayout.createSequentialGroup()
                         .addGroup(updateOrderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel22)
@@ -1406,7 +1406,7 @@ public class MainPanel extends javax.swing.JFrame {
                                 .addComponent(txtQty1)
                                 .addComponent(statusComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(alertPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap())))
         );
         updateOrderPanelLayout.setVerticalGroup(
             updateOrderPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1623,7 +1623,7 @@ public class MainPanel extends javax.swing.JFrame {
             return;
         }
 
-        BurgerOrder burgerOrder = new BurgerOrder(orderId, customerId, customerName, qty, BurgerOrder.PREPARING);
+        BurgerOrder burgerOrder = new BurgerOrder(orderId, customerId, customerName, qty, BurgerOrderController.PREPARING);
         int confirm = JOptionPane.showConfirmDialog(this, "Do you want to confirm this order?", "Order Confirmation", JOptionPane.YES_NO_OPTION);
         if (confirm == JOptionPane.YES_OPTION) {
             if (BurgerOrderController.placeOrder(burgerOrder)) {
@@ -1639,7 +1639,7 @@ public class MainPanel extends javax.swing.JFrame {
             lblShowPrice.setText("LKR 0");
             return;
         }
-        double price = Integer.parseInt(qty) * BurgerOrder.BURGER_PRICE;
+        double price = Integer.parseInt(qty) * BurgerOrderController.BURGER_PRICE;
         lblShowPrice.setText("LKR " + String.valueOf(price));
     }//GEN-LAST:event_txtQtyKeyReleased
 
@@ -1653,9 +1653,18 @@ public class MainPanel extends javax.swing.JFrame {
         String customerName = lblCustomerName1.getText();
         String qty = txtQty1.getText();
         int status = statusComboBox.getSelectedIndex();
+        
+        if(qty.isEmpty() || Integer.parseInt(qty)<1){
+            JOptionPane.showMessageDialog(this, "Please enter at least one quantity");
+            return;
+        }
 
         BurgerOrder burgerOrder = new BurgerOrder(orderId, customerId, customerName, Integer.parseInt(qty), status);
-        BurgerOrderController.updateOrder(burgerOrder);
+        if(BurgerOrderController.updateOrder(burgerOrder)){
+            JOptionPane.showMessageDialog(this, "Order updated successfully!");
+        }else{
+            JOptionPane.showMessageDialog(this, "Failed to update order!");
+        }
     }//GEN-LAST:event_updateOrderBtnActionPerformed
 
     private void txtCustomerIdKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCustomerIdKeyReleased
@@ -1688,16 +1697,16 @@ public class MainPanel extends javax.swing.JFrame {
 
         if (burgerOrder != null) {
             switch (burgerOrder.getOrderStatus()) {
-                case BurgerOrder.PREPARING:
+                case BurgerOrderController.PREPARING:
                     alertPanel.setVisible(false);
                     txtQty1.setEnabled(true);
                     statusComboBox.setEnabled(true);
                     break;
-                case BurgerOrder.DELIVERED:
+                case BurgerOrderController.DELIVERED:
                     alertPanel.setVisible(true);
                     lblAlert2.setText("This order is already delivered");
                     break;
-                case BurgerOrder.CANCEL:
+                case BurgerOrderController.CANCEL:
                     alertPanel.setVisible(true);
                     lblAlert2.setText("This order is already Cancelled");
                     break;
@@ -1711,7 +1720,7 @@ public class MainPanel extends javax.swing.JFrame {
 
             txtQty1.setText(String.valueOf(burgerOrder.getOrderQty()));
 
-            lblShowPrice1.setText("LKR " + (double) (burgerOrder.getOrderQty() * BurgerOrder.BURGER_PRICE));
+            lblShowPrice1.setText("LKR " + (double) (burgerOrder.getOrderQty() * BurgerOrderController.BURGER_PRICE));
             lblShowPrice1.setForeground(Color.decode("#000000"));
 
             statusComboBox.setSelectedIndex(burgerOrder.getOrderStatus());
