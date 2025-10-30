@@ -28,3 +28,6 @@ Desktop.ini
 
 # DO NOT ignore JAR files in lib folder (needed dependencies)
 # JAR files are kept by default
+
+# Ignore the BurgerOrders text file created by the app
+BurgerOrders.txt
