@@ -32,7 +32,7 @@ public class BurgerList {
         }
         return -1;
     }
-    
+
     public int search(String orderId) {
         int index = 0;
         Node temp = first;
@@ -47,6 +47,10 @@ public class BurgerList {
     }
 
     public boolean add(int index, BurgerOrder burgerOrder) {
+        if (isEmpty()) {
+            first = new Node(burgerOrder);
+            return true;
+        }
         if (index >= 0 && index <= size()) {
             Node node = new Node(burgerOrder);
             if (index == 0) {
@@ -68,14 +72,16 @@ public class BurgerList {
     }
 
     public BurgerOrder get(int index) {
-        if (index >= 0 && index < size()) {
-            int count = 0;
-            Node temp = first;
-            while (count < index) {
-                count++;
-                temp = temp.next;
+        if (!isEmpty()) {
+            if (index >= 0 && index < size()) {
+                int count = 0;
+                Node temp = first;
+                while (count < index) {
+                    count++;
+                    temp = temp.next;
+                }
+                return temp.burgerOrder;
             }
-            return temp.burgerOrder;
         }
         return null;
     }
@@ -104,19 +110,19 @@ public class BurgerList {
         }
         return count;
     }
-    
-    public BurgerOrder[] toArray(){
+
+    public BurgerOrder[] toArray() {
         BurgerOrder[] burgerOrders = new BurgerOrder[size()];
-        Node temp=first;
-        for(int i=0; i<burgerOrders.length; i++){
-            burgerOrders[i]=temp.burgerOrder;
-            temp=temp.next;
+        Node temp = first;
+        for (int i = 0; i < burgerOrders.length; i++) {
+            burgerOrders[i] = temp.burgerOrder;
+            temp = temp.next;
         }
         return burgerOrders;
     }
-    
-    public void clear(){
-        first=null;
+
+    public void clear() {
+        first = null;
     }
 
     //Inner Class
