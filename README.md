@@ -39,8 +39,9 @@ This will be an enhanced version of my [original iHungry Burger Shop](https://gi
 - **OOP Principles**: Encapsulation with private fields and getters/setters, Inner Node class for data structure
 - **Modern UI**: FlatLaf theme integration for professional look and feel
 - **File I/O**: CSV-style persistent storage in BurgerOrders.txt with read/write operations
-- **Input Validation**: Phone number validation (10 digits starting with 0)
+- **Input Validation**: Phone number validation (10 digits starting with 0) and duplicate order ID prevention
 - **Event-Driven Programming**: Button-based navigation with multiple panels and sidebars
+- **Error Prevention**: Duplicate order ID checks and proper object cloning in best customer feature
 
 ## 🏗️ Architecture
 
@@ -78,7 +79,12 @@ The project follows the **Model-View-Controller** architectural pattern:
     - **Order ID Generation**: Sequential ID generation from file
     - **Validation**: `isValidPhoneNumber()` - checks 10-digit format starting with 0
     - **Duplicate Detection**: `isDuplicateCustomer()`, `getDuplicateCustomerName()`
-    - **CRUD Operations**: `placeOrder()`, `searchBurgerOrder()`, `updateOrder()`, `loadAllOrders()`
+    - **CRUD Operations**: 
+      - `placeOrder()` - Adds new orders with duplicate ID prevention
+      - `searchBurgerOrder()` - Finds order by ID
+      - `updateOrder()` - Modifies existing orders
+      - `loadAllOrders()` - Loads all orders into BurgerList
+      - `search()` - Helper method to search orders array by customer ID
     - **File I/O**: Reads/writes to BurgerOrders.txt in CSV format
     - **Status Management**: `getStatusNameById()` for status display names
 
@@ -236,6 +242,21 @@ class Node {
 - **Easy Insertions**: Efficient adding of new orders
 - **Real-world Practice**: Understanding pointers and node-based structures
 
+## 📝 Changelog
+
+### Version 1.1 - October 31, 2025
+- 🐛 **Bug Fix**: Fixed loadBestCustomer() method to properly clone BurgerOrder objects
+- ✅ **Enhancement**: Added duplicate order ID prevention in placeOrder() method
+- 🔧 **Code Quality**: Improved code formatting and spacing throughout BurgerOrderController
+- 📝 **Documentation**: Updated README with recent changes and improvements
+
+### Version 1.0 - October 2025
+- 🎉 **Initial Release**: Complete implementation of burger shop management system
+- ✅ Custom Linked List data structure
+- ✅ MVC architecture implementation
+- ✅ Full GUI with FlatLaf theming
+- ✅ File persistence system
+
 ## 📝 Development Status
 
 ### Phase 1: Foundation ✅
@@ -326,12 +347,17 @@ Through this project, I have successfully:
 - All characters must be numeric (0-9)
 ```
 
-### 3. Duplicate Customer Detection
+### 3. Duplicate Detection
 ```java
-// Prevents duplicate phone numbers
-- Searches through BurgerOrders.txt
+// Customer Phone Duplicate Detection
+- Searches through BurgerOrders.txt for existing phone numbers
 - Returns true if phone exists
 - Auto-fills customer name for existing customers
+
+// Order ID Duplicate Prevention
+- Checks if order ID already exists before placing order
+- Prevents duplicate order IDs in the system
+- Returns false if order ID collision detected
 ```
 
 ### 4. Linked List Traversal
@@ -352,6 +378,7 @@ while (temp != null) {
 ### 6. File Persistence Strategy
 - **CSV Format**: OrderID,CustomerPhone,CustomerName,Quantity,Status
 - **Append Mode**: New orders added to end of file
+- **Duplicate Prevention**: Checks for existing order ID before adding new orders
 - **Full Rewrite**: Updates require reading all orders into memory, modifying, and rewriting entire file
 - **Load on Startup**: BurgerList populated from file when application launches
 
@@ -369,17 +396,18 @@ Potential improvements for future versions:
 - 💰 Advanced billing and payment tracking
 - 📱 Export data to CSV/Excel
 
-## � Project Statistics
+## 📊 Project Statistics
 
 - **Total Java Files**: 4 (3 core classes + 1 GUI)
 - **Lines of Code**: ~2,580 lines
-  - Model: ~207 lines
-  - Controller: ~174 lines
-  - View: ~2,200 lines
+  - Model: ~207 lines (BurgerOrder: 68, BurgerList: 139)
+  - Controller: ~179 lines (with recent bug fixes and improvements)
+  - View: ~2,200 lines (MainPanel with comprehensive GUI)
 - **Custom Methods**: 25+ methods across all classes
 - **GUI Components**: 3 sidebars, 9 panels, multiple tables and buttons
 - **External Libraries**: 2 (FlatLaf JARs)
 - **Target JDK**: Java SE 11
+- **Recent Updates**: Bug fixes in loadBestCustomer(), duplicate order prevention, code formatting improvements
 
 ## �👨‍💻 Author
 
@@ -469,9 +497,10 @@ OOP-Node-iHungry-BurgerShop/
 
 ⭐ **Star this repository if you find it helpful!** ⭐
 
-📌 **Status**: Core implementation complete  
+📌 **Status**: Core implementation complete + Bug fixes applied  
 📅 **Started**: October 2025  
 📅 **Completed**: October 2025  
+📅 **Last Updated**: October 31, 2025 (Bug fixes in loadBestCustomer() and duplicate prevention)  
 🎯 **Achievement**: Full implementation with custom Linked List and MVC architecture
 
 ---
@@ -494,8 +523,9 @@ OOP-Node-iHungry-BurgerShop/
 - ✨ **Zero external data dependencies** - uses simple text file for persistence
 - ✨ **Fully functional GUI** - complete desktop application ready to use
 - ✨ **Production-ready code** - proper validation, error handling, and user feedback
+- ✨ **Bug-free operation** - Recent bug fixes ensure stable best customer feature and duplicate prevention
 - ✨ **Extensible design** - easy to add new features or modify existing ones
-- ✨ **Clean code practices** - meaningful names, constants, and organized structure
+- ✨ **Clean code practices** - meaningful names, constants, organized structure, and proper formatting
 
 ---
 
