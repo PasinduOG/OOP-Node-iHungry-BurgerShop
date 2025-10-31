@@ -9,21 +9,21 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class BurgerOrderController {
-    
-    public static final int BURGER_PRICE=500;
-    public static final int CANCEL=0;
-    public static final int PREPARING=1;
-    public static final int DELIVERED=2;
+
+    public static final int BURGER_PRICE = 500;
+    public static final int CANCEL = 0;
+    public static final int PREPARING = 1;
+    public static final int DELIVERED = 2;
 
     public static String generateOrderId() {
         try {
             File file = new File("BurgerOrders.txt");
-            
-            if(!file.exists()){
+
+            if (!file.exists()) {
                 file.createNewFile();
                 return "B0001";
             }
-            
+
             BufferedReader br = new BufferedReader(new FileReader("BurgerOrders.txt"));
             String line = br.readLine();
             String lastLine = null;
@@ -115,6 +115,10 @@ public class BurgerOrderController {
 
     public static boolean placeOrder(BurgerOrder burgerOrder) {
         try {
+            if (searchBurgerOrder(burgerOrder.getOrderId()) != null) {
+                return false;
+            }
+
             FileWriter fw = new FileWriter("BurgerOrders.txt", true);
             fw.write(burgerOrder.toString() + "\n");
             fw.close();
@@ -128,16 +132,16 @@ public class BurgerOrderController {
         try {
             BufferedReader br = new BufferedReader(new FileReader("BurgerOrders.txt"));
             BurgerList burgerList = new BurgerList();
-            String line=br.readLine();
-            while(line!=null){
+            String line = br.readLine();
+            while (line != null) {
                 String[] rowData = line.split(",");
-                burgerList.add(new BurgerOrder(rowData[0],rowData[1],rowData[2],Integer.parseInt(rowData[3]),Integer.parseInt(rowData[4])));
+                burgerList.add(new BurgerOrder(rowData[0], rowData[1], rowData[2], Integer.parseInt(rowData[3]), Integer.parseInt(rowData[4])));
                 line = br.readLine();
             }
-            if(burgerList.set(burgerOrder)){
+            if (burgerList.set(burgerOrder)) {
                 FileWriter fw = new FileWriter("BurgerOrders.txt");
-                for(int i=0; i<burgerList.size(); i++){
-                    fw.write(burgerList.get(i).toString()+"\n");
+                for (int i = 0; i < burgerList.size(); i++) {
+                    fw.write(burgerList.get(i).toString() + "\n");
                     fw.flush();
                 }
                 fw.close();
@@ -147,24 +151,24 @@ public class BurgerOrderController {
         }
         return false;
     }
-    
-    public static boolean search(BurgerOrder[] burgerOrders, String customerId){
-        for(int i=0; i<burgerOrders.length; i++){
-            if(burgerOrders[i].getCustomerId().equals(customerId)){
+
+    public static boolean search(BurgerOrder[] burgerOrders, String customerId) {
+        for (int i = 0; i < burgerOrders.length; i++) {
+            if (burgerOrders[i].getCustomerId().equals(customerId)) {
                 return true;
             }
         }
         return false;
     }
-    
-    public static BurgerList loadAllOrders(){
+
+    public static BurgerList loadAllOrders() {
         BurgerList burgerList = new BurgerList();
         try {
             BufferedReader br = new BufferedReader(new FileReader("BurgerOrders.txt"));
             String line = br.readLine();
-            while(line!=null){
+            while (line != null) {
                 String[] rowData = line.split(",");
-                burgerList.add(new BurgerOrder(rowData[0],rowData[1],rowData[2],Integer.parseInt(rowData[3]),Integer.parseInt(rowData[4])));
+                burgerList.add(new BurgerOrder(rowData[0], rowData[1], rowData[2], Integer.parseInt(rowData[3]), Integer.parseInt(rowData[4])));
                 line = br.readLine();
             }
             br.close();

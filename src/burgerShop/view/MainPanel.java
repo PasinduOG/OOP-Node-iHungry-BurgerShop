@@ -137,7 +137,13 @@ public class MainPanel extends javax.swing.JFrame {
                     for (int j = 0; j < bestCustomers.length; j++) {
                         temp[j] = bestCustomers[j];
                     }
-                    temp[temp.length - 1] = burgerOrders[i];
+                    temp[temp.length - 1] = new BurgerOrder(
+                            burgerOrders[i].getOrderId(),
+                            burgerOrders[i].getCustomerId(),
+                            burgerOrders[i].getCustomerName(),
+                            burgerOrders[i].getOrderQty(),
+                            burgerOrders[i].getOrderStatus()
+                    );
                     bestCustomers = temp;
                 }
             }
